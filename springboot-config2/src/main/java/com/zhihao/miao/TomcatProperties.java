@@ -7,6 +7,12 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * 支持获取数组，集合
+ * 配置方式为   name[index]=value
+ * @author zhihao.miao
+ *
+ */
 @Component
 @ConfigurationProperties("ds")
 public class TomcatProperties {

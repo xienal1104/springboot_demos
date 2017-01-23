@@ -4,32 +4,33 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+
 /**
- *   ApplicationContextInitializer ½Ó¿ÚÊÇÔÚspringÈİÆ÷Ö´ĞĞrefreshedÖ®Ç°µÄÒ»¸ö»Øµ÷
- *   Ê¹ÓÃ²½Öè£º
- *   1£ºĞ´Ò»¸öÀà£¬ÊµÏÖApplicationContextInitializer½Ó¿Ú
- *   2£º×¢²áApplicationContextInitializer
+ *   ApplicationContextInitializer æ¥å£æ˜¯åœ¨springå®¹å™¨æ‰§è¡Œrefreshedä¹‹å‰çš„ä¸€ä¸ªå›è°ƒ
+ *   ä½¿ç”¨æ­¥éª¤ï¼š
+ *   1ï¼šå†™ä¸€ä¸ªç±»ï¼Œå®ç°ApplicationContextInitializeræ¥å£
+ *   2ï¼šæ³¨å†ŒApplicationContextInitializer
  *   
- *   ×¢²á·½·¨£º
- *   1£ºSpringApplication.addInitializers
- *   2£ºÍ¨¹ıÅäÖÃÏî context.initializer.classes Ö¸¶¨£¬¿ÉÒÔÖ¸¶¨¶à¸ö£¬¶à¸öÓÃ¶ººÅ¸ô¿ª
- *   3£º¿ÉÒÔÍ¨¹ıspring.factories»úÖÆ£¨×¢²álistener¼àÌıÆ÷Ò²¿ÉÒÔÊ¹ÓÃÕâÖÖ·½Ê½£©
+ *   æ³¨å†Œæ–¹æ³•ï¼š
+ *   1ï¼šSpringApplication.addInitializers
+ *   2ï¼šé€šè¿‡é…ç½®é¡¹ context.initializer.classes æŒ‡å®šï¼Œå¯ä»¥æŒ‡å®šå¤šä¸ªï¼Œå¤šä¸ªç”¨é€—å·éš”å¼€
+ *   3ï¼šå¯ä»¥é€šè¿‡spring.factoriesæœºåˆ¶ï¼ˆæ³¨å†Œlistenerç›‘å¬å™¨ä¹Ÿå¯ä»¥ä½¿ç”¨è¿™ç§æ–¹å¼ï¼‰
  *   
  *   
  *   
- *   CommandLineRunner¡¢ApplicationRunner ½Ó¿ÚÊÇÔÚÈİÆ÷Æô¶¯³É¹¦ºóµÄ×îºóÒ»²½»Øµ÷£¨ÀàËÆ¿ª»ú×ÔÆô¶¯£©
- *   Ê¹ÓÃ²½Öè£º
- *   1£ºĞ´Ò»¸öÀà£¬ÊµÏÖCommandLineRunner½Ó¿Ú
- *   2£º°Ñ¸ÃÀàÄÉÈëµ½springÈİÆ÷µÄ¹ÜÀíÖ®ÖĞ
- *   ×¢Òâ£º¿ÉÒÔÍ¨¹ı@Order×¢½â»òÕßOrdered½Ó¿ÚÀ´¿ØÖÆÖ´ĞĞË³Ğò¡£
+ *   CommandLineRunnerã€ApplicationRunner æ¥å£æ˜¯åœ¨å®¹å™¨å¯åŠ¨æˆåŠŸåçš„æœ€åä¸€æ­¥å›è°ƒï¼ˆç±»ä¼¼å¼€æœºè‡ªå¯åŠ¨ï¼‰
+ *   ä½¿ç”¨æ­¥éª¤ï¼š
+ *   1ï¼šå†™ä¸€ä¸ªç±»ï¼Œå®ç°CommandLineRunneræ¥å£
+ *   2ï¼šæŠŠè¯¥ç±»çº³å…¥åˆ°springå®¹å™¨çš„ç®¡ç†ä¹‹ä¸­
+ *   æ³¨æ„ï¼šå¯ä»¥é€šè¿‡@Orderæ³¨è§£æˆ–è€…Orderedæ¥å£æ¥æ§åˆ¶æ‰§è¡Œé¡ºåºã€‚
  *   
- *  CommandLineRunner£¬ ApplicationRunner Çø±ğ
- *  Çø±ğÔÚÓÚ·½·¨µÄ²ÎÊı²»Ò»Ñù
- *  CommandLineRunnerµÄ²ÎÊıÊÇ×îÔ­Ê¼µÄ²ÎÊı£¬Ã»ÓĞ×öÈÎºÎ´¦Àí
- *  ApplicationRunnerµÄ²ÎÊıÊÇApplicationArguments£¬ÊÇ¶ÔÔ­Ê¼²ÎÊı×öÁË½øÒ»²½µÄ·â×°
+ *  CommandLineRunnerï¼Œ ApplicationRunner åŒºåˆ«
+ *  åŒºåˆ«åœ¨äºæ–¹æ³•çš„å‚æ•°ä¸ä¸€æ ·
+ *  CommandLineRunnerçš„å‚æ•°æ˜¯æœ€åŸå§‹çš„å‚æ•°ï¼Œæ²¡æœ‰åšä»»ä½•å¤„ç†
+ *  ApplicationRunnerçš„å‚æ•°æ˜¯ApplicationArgumentsï¼Œæ˜¯å¯¹åŸå§‹å‚æ•°åšäº†è¿›ä¸€æ­¥çš„å°è£…
  *  
- *  ApplicationArgumentsÊÇ¶Ô²ÎÊı£¨main·½·¨£©×öÁË½øÒ»²½µÄ´¦Àí
- *  ¿ÉÒÔ½âÎö--name=valueµÄ£¬ÎÒÃÇ¾Í¿ÉÒÔÍ¨¹ınameÀ´»ñÈ¡value
+ *  ApplicationArgumentsæ˜¯å¯¹å‚æ•°ï¼ˆmainæ–¹æ³•ï¼‰åšäº†è¿›ä¸€æ­¥çš„å¤„ç†
+ *  å¯ä»¥è§£æ--name=valueçš„ï¼Œæˆ‘ä»¬å°±å¯ä»¥é€šè¿‡nameæ¥è·å–value
  */
 @SpringBootApplication
 public class Application {

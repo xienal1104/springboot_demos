@@ -2,37 +2,44 @@ package com.zhihao.miao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.ComponentScan.Filter;
 
+import com.google.gson.Gson;
 import com.zhihao.core.Role;
 import com.zhihao.core.User;
 
+
 /**
- *  @EnableAutoConfiguration ×÷ÓÃ£º´ÓclasspathÖĞËÑË÷ËùÓĞMETA-INF/spring.factoriesÅäÖÃÎÄ¼ş
- *  È»ºó£¬½«ÆäÖĞorg.springframework.boot.autoconfigure.EnableAutoConfiguration key¶ÔÓ¦µÄÅäÖÃÏî¼ÓÔØµ½springÈİÆ÷
+ *  @EnableAutoConfiguration ä½œç”¨ï¼šä»classpathä¸­æœç´¢æ‰€æœ‰META-INF/spring.factoriesé…ç½®æ–‡ä»¶
+ *  ç„¶åï¼Œå°†å…¶ä¸­org.springframework.boot.autoconfigure.EnableAutoConfiguration keyå¯¹åº”çš„é…ç½®é¡¹åŠ è½½åˆ°springå®¹å™¨
  *  
- *  Ö»ÓĞspring.boot.enableautoconfigurationÎªtrue£¨Ä¬ÈÏÎªtrue£©µÄÊ±ºò£¬²ÅÆôÓÃ×Ô¶¯ÅäÖÃ
- *  @EnableAutoConfiguration»¹¿ÉÒÔ½øĞĞÅÅ³ı£¬ÅÅ³ı·½Ê½ÓĞ2ÖĞ£¬Ò»ÊÇ¸ù¾İclassÀ´ÅÅ³ı£¨exclude£©£¬¶şÊÇ¸ù¾İclass name£¨excludeName£©À´ÅÅ³ı
+ *  åªæœ‰spring.boot.enableautoconfigurationä¸ºtrueï¼ˆé»˜è®¤ä¸ºtrueï¼‰çš„æ—¶å€™ï¼Œæ‰å¯ç”¨è‡ªåŠ¨é…ç½®
+ *  @EnableAutoConfigurationè¿˜å¯ä»¥è¿›è¡Œæ’é™¤ï¼Œæ’é™¤æ–¹å¼æœ‰2ä¸­ï¼Œä¸€æ˜¯æ ¹æ®classæ¥æ’é™¤ï¼ˆexcludeï¼‰ï¼ŒäºŒæ˜¯æ ¹æ®class nameï¼ˆexcludeNameï¼‰æ¥æ’é™¤
  *  
- *  ÆäÄÚ²¿ÊµÏÖµÄ¹Ø¼üµãÓĞ
- *  1£ºImportSelector ¸Ã½Ó¿ÚµÄ·½·¨µÄ·µ»ØÖµ¶¼»á±»ÄÉÈëµ½springÈİÆ÷¹ÜÀíÖĞ
- *  2£ºSpringFactoriesLoader ¸ÃÀà¿ÉÒÔ´ÓclasspathÖĞËÑË÷ËùÓĞMETA-INF/spring.factoriesÅäÖÃÎÄ¼ş£¬²¢¶ÁÈ¡ÅäÖÃ
+ *  å…¶å†…éƒ¨å®ç°çš„å…³é”®ç‚¹æœ‰
+ *  1ï¼šImportSelector è¯¥æ¥å£çš„æ–¹æ³•çš„è¿”å›å€¼éƒ½ä¼šè¢«çº³å…¥åˆ°springå®¹å™¨ç®¡ç†ä¸­
+ *  2ï¼šSpringFactoriesLoader è¯¥ç±»å¯ä»¥ä»classpathä¸­æœç´¢æ‰€æœ‰META-INF/spring.factoriesé…ç½®æ–‡ä»¶ï¼Œå¹¶è¯»å–é…ç½®
  *  
  *  
  */
 @EnableAutoConfiguration
 @ComponentScan
 public class Application {
+	
+	//å°†Gsonä¾èµ–å¼•å…¥ä¹‹åä¼šè‡ªåŠ¨è£…é…Gsonå¯¹è±¡çš„ä¸€äº›ç±»
+	@Bean
+	public Gson createGson(){
+		return new Gson();
+	}
     public static void main(String[] args) {
     	ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-    	System.out.println(context.getBean("createRunnable"));
+    	System.out.println(context.getBeansOfType(Runnable.class));
     	System.out.println(context.getBean(User.class));
     	System.out.println(context.getBean(Role.class));
+    	System.out.println(context.getBean("createUser"));
+    	System.out.println(context.getBeansOfType(Gson.class));
     	context.close();
 	}
 }

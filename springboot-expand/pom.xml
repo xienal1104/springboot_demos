@@ -3,6 +3,7 @@
   <groupId>com.zhihao.miao</groupId>
   <artifactId>springboot-expand</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,4 +29,5 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 	</dependencies>
+	
 </project>

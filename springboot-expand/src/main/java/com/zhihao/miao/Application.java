@@ -1,9 +1,9 @@
 package com.zhihao.miao;
 
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
 
 /**
  *   ApplicationContextInitializer 接口是在spring容器执行refreshed之前的一个回调
@@ -30,14 +30,20 @@ import org.springframework.context.ConfigurableApplicationContext;
  *  ApplicationRunner的参数是ApplicationArguments，是对原始参数做了进一步的封装
  *  
  *  ApplicationArguments是对参数（main方法）做了进一步的处理
- *  可以解析--name=value的，我们就可以通过name来获取value
+ *  可以解析--name=value的，我们就可以通过name来获取value（而CommandLineRunner只是获取--name=value）
  */
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args) {
-    	SpringApplication application = new SpringApplication(Application.class);
-    	application.addInitializers(new MyApplicationContextInitializer());
-    	ConfigurableApplicationContext context = application.run(args);
-    	context.close();
+	
+	public static void main(String[] args) {
+		SpringApplication application = new SpringApplication(Application.class);
+		//application.addInitializers(new MyApplicationContextInitializer());
+		ConfigurableApplicationContext context = application.run(args);
+		//ConfigurableApplicationContext context = application.run("aa","bb");
+		ApplicationArguments arg = context.getBean(ApplicationArguments.class);
+		System.out.println(arg.getSourceArgs().length);
+		System.out.println(arg.getOptionNames());
+		System.out.println(arg.getOptionValues("myname"));
+		context.close();
 	}
 }

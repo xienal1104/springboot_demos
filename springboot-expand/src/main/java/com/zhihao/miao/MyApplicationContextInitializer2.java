@@ -7,7 +7,7 @@ public class MyApplicationContextInitializer2 implements ApplicationContextIniti
 
 	@Override
 	public void initialize(ConfigurableApplicationContext applicationContext) {
-		
+		System.out.println("app name : " + applicationContext.getDisplayName());
 	}
 
 }

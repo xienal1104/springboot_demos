@@ -27,12 +27,12 @@ import org.springframework.context.ConfigurableApplicationContext;
  * 给配置项指定默认值（最先的默认值，读不到读@Value("${server.host:localhost}")或者context.getEnvironment().getProperty("server.host", "aaa")，再读不到
  * 读配置文件中的值）
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages="com.zhihao.miao")
 public class Application {
     public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(Application.class);
 		ConfigurableApplicationContext context = app.run(args);
-		context.getBean(Runnable.class);
+		System.out.println(context.getBean(Runnable.class));
 		context.close();
 	}
 }

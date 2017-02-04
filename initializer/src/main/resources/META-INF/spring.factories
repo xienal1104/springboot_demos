@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationContextInitializer=com.zhihao.initializer.EchoApplicationContextInitializer
+org.springframework.context.ApplicationListener=com.zhihao.event.EhcoApplicationListener

@@ -1,8 +1,12 @@
 package com.zhihao.miao.springboot;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import com.google.gson.Gson;
 
 /**
  * @SpringBootApplication 默认扫描的包的路径是当前包以及子包下面的所有类，可以通过scanBasePackages修改这个扫描包的路径
@@ -27,12 +31,14 @@ import org.springframework.context.ConfigurableApplicationContext;
  * 给配置项指定默认值（最先的默认值，读不到读@Value("${server.host:localhost}")或者context.getEnvironment().getProperty("server.host", "aaa")，再读不到
  * 读配置文件中的值）
  */
-@SpringBootApplication(scanBasePackages="com.zhihao.miao")
+@SpringBootApplication(scanBasePackages="com.zhihao.miao",exclude=GsonAutoConfiguration.class)
 public class Application {
     public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(Application.class);
+		app.setBannerMode(Banner.Mode.OFF);
 		ConfigurableApplicationContext context = app.run(args);
 		System.out.println(context.getBean(Runnable.class));
+		System.out.println(context.getBean(Gson.class));
 		context.close();
 	}
 }

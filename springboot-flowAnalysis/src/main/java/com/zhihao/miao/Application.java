@@ -1,57 +1,51 @@
 package com.zhihao.miao;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- *  ÔËĞĞÁ÷³Ì£º
- *  1£ºÅĞ¶ÏÊÇ·ñÊÇweb»·¾³
- *  2£º¼ÓÔØËùÓĞclasspathÏÂÃæµÄMETA-INF/spring.factories   ApplicationContextInitializer
- *  3£º¼ÓÔØËùÓĞclasspathÏÂÃæµÄMETA-INF/spring.factories   ApplicationListener
- *  4£ºÍÆ¶Ïmain·½·¨ËùÔÚµÄÀà
- *  5£º¿ªÊ¼Ö´ĞĞrun·½·¨
- *  6£ºÉèÖÃjava.awt.headlessÏµÍ³±äÁ¿
- *  7£º¼ÓÔØËùÓĞclasspathÏÂÃæµÄMETA-INF/spring.factories   SpringApplicationRunListener
- *  8£ºÖ´ĞĞËùÓĞSpringApplicationRunListenerµÄstarted·½·¨
- *  9£ºÊµÀı»¯ApplicationArguments¶ÔÏó
- *  10£º´´½¨environment
- *  11£ºÅäÖÃenvironment£¬Ö÷ÒªÊÇ°Ñrun·½·¨µÄ²ÎÊıÅäÖÃµ½environment
- *  12£ºÖ´ĞĞËùÓĞSpringApplicationRunListenerµÄenvironmentPrepared·½·¨
- *  13£ºÈç¹û²»ÊÇweb»·¾³£¬µ«ÊÇÊÇwebµÄenvironment£¬Ôò°ÑÕâ¸öwebµÄenvironment×ª»»³É±ê×¼µÄenvironment
- *  14£º´òÓ¡Banner
- *  15£º³õÊ¼»¯applicationContext, Èç¹ûÊÇweb»·¾³£¬ÔòÊµÀı»¯AnnotationConfigEmbeddedWebApplicationContext¶ÔÏó£¬·ñÔòÊµÀı»¯AnnotationConfigApplicationContext¶ÔÏó
- *  16£ºÈç¹ûbeanNameGenerator²»Îª¿Õ£¬¾Í°ÑbeanNameGenerator¶ÔÏó×¢Èëµ½contextÀïÃæÈ¥
- *  17£º»Øµ÷ËùÓĞµÄApplicationContextInitializer·½·¨
- *  18£ºÖ´ĞĞËùÓĞSpringApplicationRunListenerµÄcontextPrepared·½·¨
- *  19£ºÒÀ´ÎÍùspringÈİÆ÷ÖĞ×¢Èë£ºApplicationArguments£¬Banner
- *  20£º¼ÓÔØËùÓĞµÄÔ´µ½contextÀïÃæÈ¥
- *  21£ºÖ´ĞĞËùÓĞSpringApplicationRunListenerµÄcontextLoaded·½·¨
- *  22£ºÖ´ĞĞcontextµÄrefresh·½·¨£¬²¢ÇÒµ÷ÓÃcontextµÄregisterShutdownHook·½·¨£¨ÕâÒ»²½Ö´ĞĞÍê³ÉÖ®ºó£¬springÈİÆ÷¾ÍÍêÈ«³õÊ¼»¯ºÃÁË£©
- *  23£º»Øµ÷£¬»ñÈ¡ÈİÆ÷ÖĞËùÓĞµÄApplicationRunner¡¢CommandLineRunner½Ó¿Ú£¬È»ºóÅÅĞò£¬ÒÀ´Îµ÷ÓÃ
- *  24£ºÖ´ĞĞËùÓĞSpringApplicationRunListenerµÄfinished·½·¨
+ *  è¿è¡Œæµç¨‹ï¼š
+ *  1ï¼šåˆ¤æ–­æ˜¯å¦æ˜¯webç¯å¢ƒ
+ *  2ï¼šåŠ è½½æ‰€æœ‰classpathä¸‹é¢çš„META-INF/spring.factories   ApplicationContextInitializer
+ *  3ï¼šåŠ è½½æ‰€æœ‰classpathä¸‹é¢çš„META-INF/spring.factories   ApplicationListener
+ *  4ï¼šæ¨æ–­mainæ–¹æ³•æ‰€åœ¨çš„ç±»
+ *  5ï¼šå¼€å§‹æ‰§è¡Œrunæ–¹æ³•
+ *  6ï¼šè®¾ç½®java.awt.headlessç³»ç»Ÿå˜é‡
+ *  7ï¼šåŠ è½½æ‰€æœ‰classpathä¸‹é¢çš„META-INF/spring.factories   SpringApplicationRunListener
+ *  8ï¼šæ‰§è¡Œæ‰€æœ‰SpringApplicationRunListenerçš„startedæ–¹æ³•
+ *  9ï¼šå®ä¾‹åŒ–ApplicationArgumentså¯¹è±¡
+ *  10ï¼šåˆ›å»ºenvironment
+ *  11ï¼šé…ç½®environmentï¼Œä¸»è¦æ˜¯æŠŠrunæ–¹æ³•çš„å‚æ•°é…ç½®åˆ°environment
+ *  12ï¼šæ‰§è¡Œæ‰€æœ‰SpringApplicationRunListenerçš„environmentPreparedæ–¹æ³•
+ *  13ï¼šå¦‚æœä¸æ˜¯webç¯å¢ƒï¼Œä½†æ˜¯æ˜¯webçš„environmentï¼Œåˆ™æŠŠè¿™ä¸ªwebçš„environmentè½¬æ¢æˆæ ‡å‡†çš„environment
+ *  14ï¼šæ‰“å°Banner
+ *  15ï¼šåˆå§‹åŒ–applicationContext, å¦‚æœæ˜¯webç¯å¢ƒï¼Œåˆ™å®ä¾‹åŒ–AnnotationConfigEmbeddedWebApplicationContextå¯¹è±¡ï¼Œå¦åˆ™å®ä¾‹åŒ–AnnotationConfigApplicationContextå¯¹è±¡
+ *  16ï¼šå¦‚æœbeanNameGeneratorä¸ä¸ºç©ºï¼Œå°±æŠŠbeanNameGeneratorå¯¹è±¡æ³¨å…¥åˆ°contexté‡Œé¢å»
+ *  17ï¼šå›è°ƒæ‰€æœ‰çš„ApplicationContextInitializeræ–¹æ³•
+ *  18ï¼šæ‰§è¡Œæ‰€æœ‰SpringApplicationRunListenerçš„contextPreparedæ–¹æ³•
+ *  19ï¼šä¾æ¬¡å¾€springå®¹å™¨ä¸­æ³¨å…¥ï¼šApplicationArgumentsï¼ŒBanner
+ *  20ï¼šåŠ è½½æ‰€æœ‰çš„æºåˆ°contexté‡Œé¢å»
+ *  21ï¼šæ‰§è¡Œæ‰€æœ‰SpringApplicationRunListenerçš„contextLoadedæ–¹æ³•
+ *  22ï¼šæ‰§è¡Œcontextçš„refreshæ–¹æ³•ï¼Œå¹¶ä¸”è°ƒç”¨contextçš„registerShutdownHookæ–¹æ³•ï¼ˆè¿™ä¸€æ­¥æ‰§è¡Œå®Œæˆä¹‹åï¼Œspringå®¹å™¨å°±å®Œå…¨åˆå§‹åŒ–å¥½äº†ï¼‰
+ *  23ï¼šå›è°ƒï¼Œè·å–å®¹å™¨ä¸­æ‰€æœ‰çš„ApplicationRunnerã€CommandLineRunneræ¥å£ï¼Œç„¶åæ’åºï¼Œä¾æ¬¡è°ƒç”¨
+ *  24ï¼šæ‰§è¡Œæ‰€æœ‰SpringApplicationRunListenerçš„finishedæ–¹æ³•
  */
-@SpringBootApplication
 public class Application {
 	public static void main(String[] args) {
-		//ÊµÀı»¯SpringApplication¶ÔÏó£¬È»ºóµ÷ÓÃrun·½·¨
+		//å®ä¾‹åŒ–SpringApplicationå¯¹è±¡ï¼Œç„¶åè°ƒç”¨runæ–¹æ³•
 		SpringApplication application = new SpringApplication(Application.class);
-		//¿ØÖÆµÚ22²½²»Ö´ĞĞ
 		application.setRegisterShutdownHook(false);
 		ConfigurableApplicationContext context = application.run(args);
-		//Ö±½Óµ÷ÓÃ¾²Ì¬µÄrun·½·¨£¨ÄÚ²¿×ª»»³ÉµÚÒ»ÖÖµ÷ÓÃ·½Ê½£©
-		//ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		
-		//AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
-		//ac.register(annotatedClasses);
-		//ac.register(annotatedClasses);
-		//ac.register(annotatedClasses);
-		//ac.register(annotatedClasses);
-		//ac.refresh();
-		
-		
-		
+		//ç›´æ¥è°ƒç”¨é™æ€çš„runæ–¹æ³•ï¼ˆå†…éƒ¨è½¬æ¢æˆç¬¬ä¸€ç§è°ƒç”¨æ–¹æ³•ï¼‰
+		//ConfigurableApplicationContext context =SpringApplication.run(Application.class, args);
+
+		// AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
+		// ac.register(annotatedClasses);
+		// ac.register(annotatedClasses);
+		// ac.register(annotatedClasses);
+		// ac.register(annotatedClasses);
+		// ac.refresh();
+
 		context.close();
 	}
 }

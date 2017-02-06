@@ -1,1 +1,1 @@
-<h1>ftl reg</h1>
+<h1>templates reg</h1>

@@ -1,5 +1,9 @@
 package com.zhihao.miao;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 /**
  * 在spring boot中使用freemarker的步骤
  * 1：在pom.xml里面加入如下依赖
@@ -11,6 +15,19 @@ package com.zhihao.miao;
 	spring.freemarker.templateLoaderPath 用于配置模板的路径，多个用逗号隔开
  *
  */
+@Controller
 public class AccountController {
-
+	
+	@GetMapping("/reg")
+	public String reg(){
+		return "reg";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model){
+		model.addAttribute("username","miaozhihao");
+		model.addAttribute("logout", "true");
+		return "logout";
+	}
+	
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookController {
 	
-	//对异常进行处理，这种方式只能处理当前类中的异常
+	//对异常进行处理，这种方式只能处理当前类中的异常,也就是局部异常处理
 	@ExceptionHandler(value=FileNotFoundException.class)
 	public String error(){
 		return "file is not found exception";

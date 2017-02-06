@@ -9,5 +9,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter{
 	
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LogHandlerInterceptor());
+		registry.addInterceptor(new ClearAsyncHandlerInterceptor());
 	}
 }

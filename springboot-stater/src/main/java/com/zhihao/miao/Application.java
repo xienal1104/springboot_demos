@@ -1,6 +1,10 @@
 package com.zhihao.miao;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import redis.clients.jedis.Jedis;
 
 /**
  *  自己开发一个spring boot starter的步骤
@@ -13,6 +17,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) {
-		
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+    	Jedis jedis = context.getBean(Jedis.class);
+    	jedis.set("id", "51CTO");
+    	System.out.println(jedis.get("id"));
+    	context.close();
 	}
 }

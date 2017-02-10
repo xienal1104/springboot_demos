@@ -6,28 +6,29 @@ import org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfigurati
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.zhihao.miao.dao.UserDao;
+import com.zhihao.miao.service.UserService;
 
 /**
- *  springbootÄ¬ÈÏµÄÈÕÖ¾¼¶±ğÊÇinfo
- *  ¿ÉÒÔÍ¨¹ılogging.level.*=debug À´ÉèÖÃ£¬ * ¿ÉÒÔÊÇ°ü£¬Ò²¿ÉÒÔÊÇÄ³¸öÀà
+ *  springbooté»˜è®¤çš„æ—¥å¿—çº§åˆ«æ˜¯info
+ *  å¯ä»¥é€šè¿‡logging.level.*=debug æ¥è®¾ç½®ï¼Œ * å¯ä»¥æ˜¯åŒ…ï¼Œä¹Ÿå¯ä»¥æ˜¯æŸä¸ªç±»
  *  
- *  ÈÕÖ¾¼¶±ğÓĞ£ºTRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
- *  ÈÕÖ¾¼¶±ğÅäÖÃ³ÉOFF£¬±íÊ¾¹Ø±ÕÈÕÖ¾Êä³ö
+ *  æ—¥å¿—çº§åˆ«æœ‰ï¼šTRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
+ *  æ—¥å¿—çº§åˆ«é…ç½®æˆOFFï¼Œè¡¨ç¤ºå…³é—­æ—¥å¿—è¾“å‡º
  *  
- *  logging.file Ö¸¶¨ÈÕÖ¾ÎÄ¼şÃû×Ö
- *  logging.path Ö¸¶¨ÈÕÖ¾Ä¿Â¼£¨´ËÊ±µÄÈÕÖ¾Ãû×ÖÎªspring.log£©
- *  ÈÕÖ¾ÎÄ¼şÊä³ö£¬ÎÄ¼şµÄ´óĞ¡10MÖ®ºó£¬¾Í»á·Ö¸îÁË
+ *  logging.file æŒ‡å®šæ—¥å¿—æ–‡ä»¶åå­—
+ *  logging.path æŒ‡å®šæ—¥å¿—ç›®å½•ï¼ˆæ­¤æ—¶çš„æ—¥å¿—åå­—ä¸ºspring.logï¼‰
+ *  æ—¥å¿—æ–‡ä»¶è¾“å‡ºï¼Œæ–‡ä»¶çš„å¤§å°10Mä¹‹åï¼Œå°±ä¼šåˆ†å‰²äº†
  *  
- *  logging.pattern.console ÅäÖÃ¿ØÖÆÌ¨Êä³öÈÕÖ¾µÄpattern
- *  logging.file.console ÅäÖÃÈÕÖ¾ÎÄ¼şÊä³öÈÕÖ¾µÄpattern
+ *  logging.pattern.console é…ç½®æ§åˆ¶å°è¾“å‡ºæ—¥å¿—çš„pattern
+ *  logging.file.console é…ç½®æ—¥å¿—æ–‡ä»¶è¾“å‡ºæ—¥å¿—çš„pattern
  *  
- *  springbootÄ¬ÈÏÖ§³Ölogback
- *  Ò²¾ÍÊÇËµ£¬Ö»ĞèÒªÔÚclassptahÏÂ·ÅÒ»¸ölogback.xml,logback-spring.xml(¹Ù·½ÍÆ¼öÊ¹ÓÃlogback-spring.xml£©µÄÎÄ¼ş£¬¼´¿É¶¨ÖÆÈÕÖ¾µÄÊä³ö
+ *  springbooté»˜è®¤æ”¯æŒlogback
+ *  ä¹Ÿå°±æ˜¯è¯´ï¼Œåªéœ€è¦åœ¨classptahä¸‹æ”¾ä¸€ä¸ªlogback.xml,logback-spring.xml(å®˜æ–¹æ¨èä½¿ç”¨logback-spring.xmlï¼‰çš„æ–‡ä»¶ï¼Œå³å¯å®šåˆ¶æ—¥å¿—çš„è¾“å‡º
  *  
- *  Ê¹ÓÃÆäËûµÄÈÕÖ¾×é¼şµÄ²½Öè
- *  1£ºÅÅ³ıµôÄ¬ÈÏµÄÈÕÖ¾×é¼ş£ºspring-boot-starter-logging
- *  2£º¼ÓÈëĞÂµÄÈÕÖ¾Â·¾¶ÒÀÀµ
- *  3£º°ÑÏàÓ¦µÄÅäÖÃÎÄ¼ş·Åµ½classpathÏÂ
+ *  ä½¿ç”¨å…¶ä»–çš„æ—¥å¿—ç»„ä»¶çš„æ­¥éª¤
+ *  1ï¼šæ’é™¤æ‰é»˜è®¤çš„æ—¥å¿—ç»„ä»¶ï¼šspring-boot-starter-logging
+ *  2ï¼šåŠ å…¥æ–°çš„æ—¥å¿—è·¯å¾„ä¾èµ–
+ *  3ï¼šæŠŠç›¸åº”çš„é…ç½®æ–‡ä»¶æ”¾åˆ°classpathä¸‹
  */
 @SpringBootApplication(exclude=WebSocketAutoConfiguration.class)
 public class Application {
@@ -36,6 +37,7 @@ public class Application {
 		//ConfigurableApplicationContext context = application.run("--debug");
 		ConfigurableApplicationContext context = application.run(args);
 		context.getBean(UserDao.class).log();
+		context.getBean(UserService.class).log();
 		context.close();
 	}
 }

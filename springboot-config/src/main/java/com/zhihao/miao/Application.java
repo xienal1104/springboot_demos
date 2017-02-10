@@ -22,10 +22,10 @@ public class Application {
 		//ProPertiesConfig proPertiesConfig = applicationContext.getBean(ProPertiesConfig.class);
 		//proPertiesConfig.show();
 		
-		//DataSourceProperties dataSourceProperties = applicationContext.getBean(DataSourceProperties.class);
-		//dataSourceProperties.show();
-		//JdbcConfig jdbcConfig = applicationContext.getBean(JdbcConfig.class);
-		//jdbcConfig.show();
+		DataSourceProperties dataSourceProperties = applicationContext.getBean(DataSourceProperties.class);
+		dataSourceProperties.show();
+//		JdbcConfig jdbcConfig = applicationContext.getBean(JdbcConfig.class);
+//		jdbcConfig.show();
 		applicationContext.close();
 	}
 }

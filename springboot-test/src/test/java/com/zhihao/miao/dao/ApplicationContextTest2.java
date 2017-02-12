@@ -5,19 +5,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class UserDaoTest {
-	
+@SpringBootTest(classes=TestBeanConfiguration.class)
+public class ApplicationContextTest2 {
+
 	@Autowired
-	private UserDao userDao;
-
+	public ApplicationContext context;
+	
 	@Test
-	public void test() {
-		Assert.assertEquals(Integer.valueOf(1), userDao.addUser("admin"));
-		Assert.assertEquals(Integer.valueOf(0), userDao.addUser(null));
+	public void testNotNull(){
+		Assert.assertNotNull(context.getBean(Runnable.class));
 	}
-
 }

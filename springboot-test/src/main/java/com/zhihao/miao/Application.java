@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * springboot测试步骤
  * 直接在测试类上面加上如下2个注解
  *  @RunWith(SpringRunner.class)
- *  @SpringBootTest 加入这二个接口之后那么就自动可以装配UserDao
+ *  @SpringBootTest 加入这二个接口之后那么就自动可以装配UserDao（就可以直接在容器中获取对象）
  */
 @SpringBootApplication
 public class Application {
